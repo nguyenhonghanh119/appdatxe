@@ -1,7 +1,3 @@
-<?php
-// Lấy mã chuyến từ URL (?trip=TRIP-001), dùng để gửi kèm khi tạo thanh toán
-$trip_id = $_GET['trip'] ?? 'TRIP-001';
-?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -38,7 +34,6 @@ $trip_id = $_GET['trip'] ?? 'TRIP-001';
          ============================================================== -->
 
     <div class="view" id="view-checkout">
-      <input type="hidden" id="trip-id-input" value="<?= htmlspecialchars($trip_id) ?>">
       <div class="topbar"><div><h1>Xác nhận đặt chỗ</h1><p>Kiểm tra thông tin chuyến và chọn phương thức thanh toán.</p></div></div>
 
       <div class="post-layout">
@@ -136,34 +131,23 @@ $trip_id = $_GET['trip'] ?? 'TRIP-001';
   function confirmBooking(){
     const btn = document.getElementById('btn-confirm');
     const total = seats * PRICE_PER_SEAT;
-    const tripId = document.getElementById('trip-id-input').value;
 
     if (method === 'online'){
       const gateway = document.getElementById('gateway-select').value;
       btn.disabled = true;
       btn.textContent = 'Đang chuyển đến cổng thanh toán…';
-
-      // Tạo booking + chuyển hướng SANG TRANG THANH TOÁN VNPAY thật:
-      // submit một form POST thật (không dùng fetch) để trình duyệt điều hướng
-      // theo header Location mà khach-tao-thanh-toan.php trả về.
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'khachthanhtoan.php';
-
-      const fields = { trip_id: tripId, seats: seats, gateway: gateway, amount: total };
-      Object.entries(fields).forEach(([name, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
-      form.submit();
+      // TODO BACKEND:
+      // const res = await fetch('/api/passenger/bookings', {method:'POST', headers:{'Content-Type':'application/json'},
+      //   body: JSON.stringify({trip_id:'TRIP-001', seats, payment_method:'online', gateway})});
+      // const {checkout_url} = await res.json();
+      // window.location.href = checkout_url;  // chuyển hướng sang VNPay/Momo/ZaloPay thật
+      setTimeout(() => {
+        alert('Thanh toán qua ' + gateway.toUpperCase() + ' thành công! Tổng tiền: ' + fmt(total) + '\n(demo — cần nối cổng thanh toán thật)');
+        window.location.href = 'khach-chuyen-cua-toi.php';
+      }, 900);
     } else {
       // TODO BACKEND: await fetch('/api/passenger/bookings', {method:'POST', headers:{'Content-Type':'application/json'},
-      //   body: JSON.stringify({trip_id: tripId, seats, payment_method:'cash'})});
+      //   body: JSON.stringify({trip_id:'TRIP-001', seats, payment_method:'cash'})});
       alert('Đã đặt chỗ thành công! Vui lòng thanh toán ' + fmt(total) + ' tiền mặt cho tài xế khi lên xe.\n(demo — cần nối API).');
       window.location.href = 'khach-chuyen-cua-toi.php';
     }

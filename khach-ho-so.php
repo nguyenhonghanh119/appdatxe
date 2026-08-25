@@ -33,7 +33,6 @@
          ============================================================== -->
 
     <div class="view" id="view-profile">
-      <button type="button" class="btn-back" onclick="history.back()"><span class="arrow">←</span> Quay lại</button>
       <div class="topbar"><div><h1>Hồ sơ &amp; Thanh toán</h1><p>Thông tin cá nhân, phương thức thanh toán đã lưu và lịch sử giao dịch.</p></div></div>
 
       <div class="profile-layout">

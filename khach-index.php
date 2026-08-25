@@ -30,7 +30,6 @@
          ============================================================== -->
 
     <div class="view" id="view-search">
-      <button type="button" class="btn-back" onclick="history.back()"><span class="arrow">←</span> Quay lại</button>
       <div class="topbar"><div><h1>Bạn muốn đi đâu hôm nay? 👋</h1><p>Tìm chuyến ghép phù hợp với lịch trình của bạn.</p></div></div>
 
       <div class="card">

@@ -31,7 +31,6 @@
          ============================================================== -->
 
     <div class="view" id="view-mybookings">
-      <button type="button" class="btn-back" onclick="history.back()"><span class="arrow">←</span> Quay lại</button>
       <div class="topbar"><div><h1>Chuyến của tôi</h1><p>Quản lý các chuyến đã đặt và trạng thái thanh toán.</p></div></div>
 
       <div class="tabs">
