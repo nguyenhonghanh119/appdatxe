@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<br/>
 <body>
 <div class="shell">
   <aside class="sidebar">
@@ -21,8 +20,8 @@
     <div class="sidebar-foot"><div class="av">L</div><div><b>Nguyễn Thị Lan</b><span>091 888 2233</span><span class="role-pill">Đã xác thực</span></div></div>
   </aside>
 
-  <main class="main">
-
+  <main class="main">=
+<br>
     <!-- ==============================================================
          TODO BACKEND:
          - GET  /api/passenger/profile               -> thông tin cá nhân
